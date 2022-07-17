@@ -23,16 +23,6 @@ export function createMessageCard(
     summary: notificationSummary,
     themeColor: notificationColor,
     title: notificationSummary,
-    sections: [
-      {
-        activityTitle: `**CI #${runNum} (commit ${sha.substr(
-          0,
-          7
-        )})** on [${repoName}](${repoUrl})`,
-        activityImage: avatar_url,
-        activitySubtitle: `by ${commit.data.commit.author.name} [(@${author.login})](${author.html_url}) on ${timestamp}`
-      }
-    ],
     potentialAction: [
       {
         '@context': 'http://schema.org',

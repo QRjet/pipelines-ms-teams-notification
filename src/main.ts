@@ -21,8 +21,22 @@ async function run(): Promise<void> {
       required: true
     })
 
-    const notificationSummary =
+    const webObjectKey = core.getInput('web-object-key')
+
+    let GITHUB_BUILD_NO = ''
+    if(webObjectKey) {
+      GITHUB_BUILD_NO = webObjectKey.substring(
+        webObjectKey.indexOf('-') + 1,
+        webObjectKey.indexOf('.')
+      )
+    }
+
+    let notificationSummary =
       core.getInput('notification-summary') || 'GitHub Action Notification'
+    
+    if(GITHUB_BUILD_NO) {
+      notificationSummary = notificationSummary.replace('#build-number#', GITHUB_BUILD_NO)
+    }
     const notificationColor = core.getInput('notification-color') || '0b93ff'
     const timezone = core.getInput('timezone') || 'UTC'
 
