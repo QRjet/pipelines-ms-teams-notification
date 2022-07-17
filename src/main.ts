@@ -36,7 +36,7 @@ async function run(): Promise<void> {
 
     if (GITHUB_BUILD_NO) {
       notificationSummary = notificationSummary.replace(
-        '#build-number#',
+        '<build-number>',
         GITHUB_BUILD_NO
       )
     }

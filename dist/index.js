@@ -2217,7 +2217,7 @@ function run() {
             }
             let notificationSummary = core.getInput('notification-summary') || 'GitHub Action Notification';
             if (GITHUB_BUILD_NO) {
-                notificationSummary = notificationSummary.replace('#build-number#', GITHUB_BUILD_NO);
+                notificationSummary = notificationSummary.replace('<build-number>', GITHUB_BUILD_NO);
             }
             const notificationColor = core.getInput('notification-color') || '0b93ff';
             const timezone = core.getInput('timezone') || 'UTC';
