@@ -23,6 +23,9 @@ inputs:
   timezone:
     description: 'Timezone (ex. America/Denver)'
     required: false
+  pr-number:
+    description: 'Pull request number'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
