@@ -33,6 +33,8 @@ async function run(): Promise<void> {
 
     let notificationSummary =
       core.getInput('notification-summary') || 'GitHub Action Notification'
+    
+    let prNumber = core.getInput('pr-number') || ''
 
     if (GITHUB_BUILD_NO) {
       notificationSummary = notificationSummary.replace(
@@ -69,7 +71,8 @@ async function run(): Promise<void> {
       repoName,
       sha,
       repoUrl,
-      timestamp
+      timestamp,
+      prNumber ? repoUrl+'/'+prNumber : undefined
     )
 
     console.log(messageCard)
@@ -83,7 +86,7 @@ async function run(): Promise<void> {
       .catch(function(error) {
         core.debug(error)
       })
-  } catch (error) {
+  } catch (error: any) {
     console.log(error)
     core.setFailed(error.message)
   }

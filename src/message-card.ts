@@ -8,7 +8,8 @@ export function createMessageCard(
   repoName: string,
   sha: string,
   repoUrl: string,
-  timestamp: string
+  timestamp: string,
+  prUrl?: string
 ): any {
   let avatar_url =
     'https://www.gravatar.com/avatar/05b6d8cc7c662bf81e01b39254f88a48?d=identicon'
@@ -35,7 +36,17 @@ export function createMessageCard(
         target: [commit.data.html_url],
         '@type': 'ViewAction',
         name: 'View Commit Changes'
-      }
+      },
+      ...( 
+        prUrl 
+        ? [{
+            '@context': 'http://schema.org',
+            target: [prUrl],
+            '@type': 'ViewAction',
+            name: 'View PR'
+          }]
+        : []
+      )
     ]
   }
   return messageCard
